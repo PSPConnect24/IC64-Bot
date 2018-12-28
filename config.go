@@ -28,6 +28,6 @@ func Load() Config {
 	defer xmlFile.Close()
 	data, _ := ioutil.ReadAll(xmlFile)
 	var config Config
-	xml.Unmarshal(data, config)
+	xml.Unmarshal(data, &config)
 	return config
 }
