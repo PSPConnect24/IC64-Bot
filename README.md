@@ -1,2 +1,3 @@
 # NigtenGO-Bot
-owo Go uwu
+
+Official Discord-Bot for **[Nigtendo](https://discord.gg/DyqvPmU)**
