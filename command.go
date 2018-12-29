@@ -6,7 +6,7 @@ import (
 
 // Command Represents a command
 type Command struct {
-	Method      func([]string, Environment) *discordgo.MessageEmbed
+	Method      func([]string, Environment)
 	Arguments   []string
 	Permissions int
 	Help        string
@@ -19,10 +19,11 @@ type Environment struct {
 	Message *discordgo.Message
 	User    *discordgo.User
 	Member  *discordgo.Member
+	Client  *discordgo.Session
 }
 
-// Add - Adds a command to the array help me I have no idea
-func Add(command Command) {
+// Initialize - initializes all commands.
+func Initialize() {
 
 }
 
