@@ -4,16 +4,16 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-// Command Represents a command
+// Command - Represents a command
 type Command struct {
-	Method      func([]string, Environment)
+	Method      func([]string, Context)
 	Arguments   []string
 	Permissions int
 	Help        string
 }
 
-// Environment provides general data for the command
-type Environment struct {
+// Context provides general data for the command
+type Context struct {
 	Channel *discordgo.Channel
 	Guild   *discordgo.Guild
 	Message *discordgo.Message
@@ -28,6 +28,6 @@ func Initialize() {
 }
 
 // Execute - Executes a command
-func Execute(name string, arguments []string, environment Environment) {
+func Execute(name string, arguments []string, ctx Context) {
 
 }
