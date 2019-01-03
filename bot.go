@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"github.com/MikeModder/anpan"
 	"github.com/bwmarrin/discordgo"
 )
 
@@ -18,7 +19,17 @@ func main() {
 		return
 	}
 
-	client.AddHandler(ready)
+	owners := []string{
+		"152541437068705793",
+		"324782057819602944",
+	}
+	handler := anpan.NewCommandHandler(config.Bot.Prefix, owners, true, true)
+	handler.StatusHandler.SetSwitchInterval("30s")
+	handler.StatusHandler.AddEntry("NigtenGO-Bot")
+	handler.AddCommand("test", "test", false, 0, pingCmd)
+
+	client.AddHandler(handler.OnMessage)
+	client.AddHandler(handler.StatusHandler.OnReady)
 
 	err = client.Open()
 	if err != nil {
@@ -30,9 +41,4 @@ func main() {
 	<-sc
 
 	client.Close()
-}
-
-func ready(session *discordgo.Session, event *discordgo.Ready) {
-	session.UpdateStatus(0, "Apparently I am a thing now")
-	fmt.Println("Bot is now ready, logged in as", session.State.User.String())
 }
