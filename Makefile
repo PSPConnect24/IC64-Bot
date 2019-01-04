@@ -19,7 +19,7 @@ all: build
 #----------------------------------------------------------------------
 # General building procedure
 #----------------------------------------------------------------------
-build:
+build: deps
 	@echo "Building..."
 	@$(GOBUILD) -v -o $(BINARY)
 
@@ -35,5 +35,6 @@ clean:
 # Dependency retrieval.
 #----------------------------------------------------------------------
 deps:
+	@echo "Getting dependencies..."
 	@$(GOGET) github.com/bwmarrin/discordgo
 	@$(GOGET) github.com/MikeModder/anpan
