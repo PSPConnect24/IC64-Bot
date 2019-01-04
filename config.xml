@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<config>
-    <bot>
-        <token>token here</token>
-        <prefix>prefix here</prefix>
-    </bot>
-</config>

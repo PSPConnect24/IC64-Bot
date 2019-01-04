@@ -1,35 +1,31 @@
 package main
 
 import (
-	"encoding/xml"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"os"
 )
 
-// Config - Overall configuration
+// Config represents the config
 type Config struct {
-	XMLName xml.Name  `xml:"config"`
-	Bot     BotConfig `xml:"bot"`
+	Token  string   `json:"token"`
+	Prefix string   `json:"prefix"`
+	Owners []string `json:"owners"`
 }
 
-// BotConfig - Bot-specific settings
-type BotConfig struct {
-	Token  string `xml:"token"`
-	Prefix string `xml:"prefix"`
-}
-
-// Load - Loads the configuration into memory
+// Load the configuration into memory
 func Load() Config {
-	xmlFile, err := os.Open("config.xml")
-	if err != nil {
-		fmt.Println("An error occurred!\n", err)
-	}
-	defer xmlFile.Close()
-
-	data, _ := ioutil.ReadAll(xmlFile)
-
 	var config Config
-	xml.Unmarshal(data, &config)
+	cfg, err := os.Open("config.json")
+	if err != nil {
+		fmt.Println("Failed to open config.json: ", err)
+		os.Exit(1)
+	}
+	err = json.NewDecoder(cfg).Decode(&config)
+	if err != nil {
+		fmt.Println("Failed to decode config.json: ", err)
+		os.Exit(1)
+	}
+	cfg.Close()
 	return config
 }

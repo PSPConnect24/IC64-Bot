@@ -13,18 +13,13 @@ import (
 func main() {
 	config := Load()
 
-	client, err := discordgo.New("Bot " + config.Bot.Token)
+	client, err := discordgo.New("Bot " + config.Token)
 	if err != nil {
 		fmt.Println("An error occurred when initializing the Client: ", err)
 		return
 	}
 
-	owners := []string{
-		"152541437068705793",
-		"324782057819602944",
-	}
-
-	handler := anpan.NewCommandHandler(config.Bot.Prefix, owners, true, true)
+	handler := anpan.NewCommandHandler(config.Prefix, config.Owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
 	handler.StatusHandler.AddEntry("NigtenGO-Bot")
 	handler.AddCommand("test", "test", false, 0, testCmd)
