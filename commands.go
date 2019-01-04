@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/bwmarrin/discordgo"
+	"github.com/MikeModder/anpan"
 )
 
-func testCmd(s *discordgo.Session, m *discordgo.MessageCreate, _ []string) {
-	s.ChannelMessageSend(m.ChannelID, "hello, world")
+func testCmd(ctx anpan.Context, _ []string) {
+	ctx.Session.ChannelMessageSend(ctx.Channel.ID, "hello, world")
 }

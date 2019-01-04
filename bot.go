@@ -22,7 +22,7 @@ func main() {
 	handler := anpan.NewCommandHandler(config.Prefix, config.Owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
 	handler.StatusHandler.AddEntry("NigtenGO-Bot")
-	handler.AddCommand("test", "test", false, 0, testCmd)
+	handler.AddCommand("test", "test", false, false, 0, testCmd)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
