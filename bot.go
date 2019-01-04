@@ -23,10 +23,11 @@ func main() {
 		"152541437068705793",
 		"324782057819602944",
 	}
+
 	handler := anpan.NewCommandHandler(config.Bot.Prefix, owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
 	handler.StatusHandler.AddEntry("NigtenGO-Bot")
-	handler.AddCommand("test", "test", false, 0, pingCmd)
+	handler.AddCommand("test", "test", false, 0, testCmd)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
@@ -34,6 +35,7 @@ func main() {
 	err = client.Open()
 	if err != nil {
 		fmt.Println("An error occurred when initializing the connection: ", err)
+		return
 	}
 
 	sc := make(chan os.Signal, 1)
