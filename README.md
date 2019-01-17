@@ -1,3 +1,3 @@
-# NigtenGO-Bot
+# IronConnect64-Bot
 
-Official Discord-Bot for **[Nigtendo](https://discord.gg/DyqvPmU)**
+Official Discord-Bot for **[IronConnect64](https://discord.gg/E37qz55)**
