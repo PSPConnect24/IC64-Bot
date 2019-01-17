@@ -21,7 +21,7 @@ func main() {
 
 	handler := anpan.NewCommandHandler(config.Prefix, config.Owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
-	handler.StatusHandler.AddEntry("NigtenGO-Bot")
+	handler.StatusHandler.AddEntry("IC24-Bot")
 	handler.AddCommand("test", "test", false, false, 0, testCmd)
 
 	client.AddHandler(handler.OnMessage)
