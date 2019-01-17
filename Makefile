@@ -38,3 +38,4 @@ deps:
 	@echo "Getting dependencies..."
 	@$(GOGET) github.com/bwmarrin/discordgo
 	@$(GOGET) github.com/MikeModder/anpan
+	@$(GOGET) github.com/apaxa-go/eval
