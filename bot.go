@@ -23,6 +23,7 @@ func main() {
 	handler.StatusHandler.SetSwitchInterval("30s")
 	handler.StatusHandler.AddEntry("IC24-Bot")
 	handler.AddCommand("test", "test", false, false, 0, testCmd)
+	handler.AddCommand("ping", "Check the bot's ping", false, false, 0, pingCmd)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
