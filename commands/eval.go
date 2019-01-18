@@ -1,4 +1,4 @@
-package main
+package commands
 
 import (
 	"fmt"
@@ -10,7 +10,8 @@ import (
 	"github.com/apaxa-go/eval"
 )
 
-func evalCmd(ctx anpan.Context, content []string) {
+// Eval command.
+func Eval(ctx anpan.Context, content []string) {
 	exp, err := eval.ParseString(strings.Join(content, " "), "")
 	if err != nil {
 		ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":x: An error occurred: **"+err.Error()+"**")

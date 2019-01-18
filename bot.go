@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	"./commands"
 	"github.com/MikeModder/anpan"
 	"github.com/bwmarrin/discordgo"
 )
@@ -21,10 +22,11 @@ func main() {
 
 	handler := anpan.NewCommandHandler(config.Prefix, config.Owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
-	handler.StatusHandler.AddEntry("IC24-Bot")
-	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, aboutCmd)
-	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, pingCmd)
-	handler.AddCommand("eval", "", true, true, 0, evalCmd)
+	handler.StatusHandler.AddEntry("IC64-Bot")
+
+	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, commands.About)
+	handler.AddCommand("eval", "", true, true, 0, commands.Eval)
+	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, commands.Ping)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
