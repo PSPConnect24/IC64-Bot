@@ -7,11 +7,6 @@ GOCLEAN=$(GOCMD) clean
 GOGET=$(GOCMD) get
 
 #----------------------------------------------------------------------
-# Project properties
-#----------------------------------------------------------------------
-BINARY=IC64-Bot
-
-#----------------------------------------------------------------------
 # Standard option to run
 #----------------------------------------------------------------------
 all: build
@@ -21,7 +16,7 @@ all: build
 #----------------------------------------------------------------------
 build: deps
 	@echo "Building..."
-	@$(GOBUILD) -v -o $(BINARY)
+	@$(GOBUILD)
 
 #----------------------------------------------------------------------
 # Cleanup
@@ -35,7 +30,7 @@ clean:
 # Dependency retrieval.
 #----------------------------------------------------------------------
 deps:
-	@echo "Getting dependencies..."
+	@echo "Fetching dependencies..."
 	@$(GOGET) github.com/bwmarrin/discordgo
 	@$(GOGET) github.com/MikeModder/anpan
 	@$(GOGET) github.com/apaxa-go/eval
