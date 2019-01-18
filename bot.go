@@ -27,6 +27,7 @@ func main() {
 	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, commands.About)
 	handler.AddCommand("eval", "", true, true, 0, commands.Eval)
 	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, commands.Ping)
+	handler.AddCommand("shutdown", "", true, true, 0, commands.Shutdown)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
