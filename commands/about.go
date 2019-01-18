@@ -16,7 +16,7 @@ func About(ctx anpan.Context, _ []string) {
 		},
 		Fields: []*discordgo.MessageEmbedField{&discordgo.MessageEmbedField{
 			Name:  "Related content",
-			Value: "**[Website](ic64.xyz)**\n**[IC64 on GitHub](https://github.com/IronConnect64)**\n**[IC64-Bot's repository](https://github.com/IronConnect64/IC64-Bot)**",
+			Value: "**[Website](https://ic64.xyz)**\n**[IC64 on GitHub](https://github.com/IronConnect64)**\n**[IC64-Bot's repository](https://github.com/IronConnect64/IC64-Bot)**",
 		}},
 	})
 }
