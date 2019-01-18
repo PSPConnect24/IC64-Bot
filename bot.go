@@ -28,7 +28,6 @@ func main() {
 	handler.AddCommand("eval", "", true, true, 0, commands.Eval)
 	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, commands.Ping)
 	handler.AddCommand("shutdown", "", true, true, 0, commands.Shutdown)
-
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
 
@@ -37,6 +36,8 @@ func main() {
 		fmt.Println("An error occurred when initializing the connection: ", err)
 		return
 	}
+
+	fmt.Printf("Client running, logged in as %s#%s (ID: %s)\n", client.State.User.Username, client.State.User.Discriminator, client.State.User.ID)
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
