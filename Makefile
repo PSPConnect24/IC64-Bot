@@ -35,7 +35,7 @@ clean:
 # Dependency retrieval.
 #----------------------------------------------------------------------
 deps:
-	@echo "Getting dependencies..."
+	@echo "Fetching dependencies..."
 	@$(GOGET) github.com/bwmarrin/discordgo
 	@$(GOGET) github.com/MikeModder/anpan
 	@$(GOGET) github.com/apaxa-go/eval
