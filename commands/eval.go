@@ -1,8 +1,6 @@
 package commands
 
 import (
-	"fmt"
-	"os"
 	"reflect"
 	"strings"
 
@@ -27,17 +25,11 @@ func Eval(ctx anpan.Context, content []string) {
 		"bot":     eval.MakeDataRegular(reflect.ValueOf(ctx.Session.State)),
 	}
 
-	output, err := exp.EvalToInterface(env)
+	output, err := exp.EvalToRegular(env)
 	if err != nil {
 		ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":x: An error occurred: "+err.Error())
 		return
 	}
 
-	ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":white_check_mark: Output:\n```\n"+fmt.Sprintf("%d", output)+"\n```")
-}
-
-func shutdownCmd(ctx anpan.Context, _ []string) {
-	ctx.Session.MessageReactionAdd(ctx.Channel.ID, ctx.Message.ID, ":white_check_mark:")
-	ctx.Session.Close()
-	os.Exit(0)
+	ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":white_check_mark: Output:\n```\n"+output.String()+"\n```")
 }

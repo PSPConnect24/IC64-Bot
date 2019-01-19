@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"os"
 	"os/signal"
 	"syscall"
@@ -13,11 +13,9 @@ import (
 
 func main() {
 	config := Load()
-
 	client, err := discordgo.New("Bot " + config.Token)
 	if err != nil {
-		fmt.Println("An error occurred when initializing the Client: ", err)
-		return
+		log.Fatalf("An error occurred when initializing the Client: %s", err.Error())
 	}
 
 	handler := anpan.NewCommandHandler(config.Prefixes, config.Owners, true, true)
@@ -33,17 +31,17 @@ func main() {
 
 	err = client.Open()
 	if err != nil {
-		fmt.Println("An error occurred when initializing the connection: ", err)
-		return
+		log.Fatalf("An error occurred when initializing the connection: %s", err)
 	}
 
 	handler.AddPrefix(client.State.User.Mention())
 
-	fmt.Printf("Client running, logged in as %s#%s (ID: %s)\n", client.State.User.Username, client.State.User.Discriminator, client.State.User.ID)
+	log.Printf("Client running, logged in as %s#%s (ID: %s)\n", client.State.User.Username, client.State.User.Discriminator, client.State.User.ID)
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
-	fmt.Println("Caught shutdown signal, shutting down...")
+
 	client.Close()
+	log.Fatalln("Caught shutdown signal, shutting down...")
 }
