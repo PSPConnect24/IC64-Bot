@@ -8,9 +8,9 @@ import (
 
 // Config represents the config
 type Config struct {
-	Token  string   `json:"token"`
-	Prefix string   `json:"prefix"`
-	Owners []string `json:"owners"`
+	Token    string   `json:"token"`
+	Prefixes []string `json:"prefixes"`
+	Owners   []string `json:"owners"`
 }
 
 // Load the configuration into memory

@@ -20,7 +20,7 @@ func main() {
 		return
 	}
 
-	handler := anpan.NewCommandHandler(config.Prefix, config.Owners, true, true)
+	handler := anpan.NewCommandHandler(config.Prefixes, config.Owners, true, true)
 	handler.StatusHandler.SetSwitchInterval("30s")
 	handler.StatusHandler.AddEntry("IC64-Bot")
 
