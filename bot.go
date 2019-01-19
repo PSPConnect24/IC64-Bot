@@ -37,11 +37,13 @@ func main() {
 		return
 	}
 
+	handler.AddPrefix(client.State.User.Mention())
+
 	fmt.Printf("Client running, logged in as %s#%s (ID: %s)\n", client.State.User.Username, client.State.User.Discriminator, client.State.User.ID)
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
-
+	fmt.Println("Caught shutdown signal, shutting down...")
 	client.Close()
 }
