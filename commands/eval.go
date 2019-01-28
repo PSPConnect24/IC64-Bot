@@ -12,7 +12,7 @@ import (
 func Eval(ctx anpan.Context, content []string) {
 	exp, err := eval.ParseString(strings.Join(content, " "), "")
 	if err != nil {
-		ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":x: An error occurred: **"+err.Error()+"**")
+		ctx.Reply(":x: An error occurred: **" + err.Error() + "**")
 		return
 	}
 
@@ -27,9 +27,9 @@ func Eval(ctx anpan.Context, content []string) {
 
 	output, err := exp.EvalToRegular(env)
 	if err != nil {
-		ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":x: An error occurred: "+err.Error())
+		ctx.Reply(":x: An error occurred: **" + err.Error() + "**")
 		return
 	}
 
-	ctx.Session.ChannelMessageSend(ctx.Channel.ID, ":white_check_mark: Output:\n```\n"+output.String()+"\n```")
+	ctx.Reply(":white_check_mark: Output:\n```\n" + output.String() + "\n```")
 }
