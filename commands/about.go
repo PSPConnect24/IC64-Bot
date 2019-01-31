@@ -14,7 +14,7 @@ func About(ctx anpan.Context, _ []string) {
 		Thumbnail: &discordgo.MessageEmbedThumbnail{
 			URL: ctx.Session.State.User.AvatarURL(""),
 		},
-		Fields: []*discordgo.MessageEmbedField{&discordgo.MessageEmbedField{
+		Fields: []*discordgo.MessageEmbedField{{
 			Name:  "Related content",
 			Value: "**[Website](https://ic64.xyz)**\n**[IC64 on GitHub](https://github.com/IronConnect64)**\n**[IC64-Bot's repository](https://github.com/IronConnect64/IC64-Bot)**",
 		}},
