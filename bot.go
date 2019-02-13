@@ -6,24 +6,30 @@ import (
 	"os/signal"
 	"syscall"
 
-	"./commands"
 	"github.com/MikeModder/anpan"
 	"github.com/bwmarrin/discordgo"
+	"github.com/getsentry/raven-go"
 )
 
+var cfg config
+
+func init() {
+	cfg = load()
+	raven.SetDSN(cfg.DSN)
+}
+
 func main() {
-	config := Load()
-	client, err := discordgo.New("Bot " + config.Token)
+	client, err := discordgo.New("Bot " + cfg.Token)
 	if err != nil {
 		log.Fatalf("An error occurred when initializing the Client: %s", err.Error())
 	}
 
-	handler := anpan.NewCommandHandler(config.Prefixes, config.Owners, true, true)
+	handler := anpan.NewCommandHandler(cfg.Prefixes, cfg.Owners, true, true)
 
-	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, commands.About)
-	handler.AddCommand("eval", "", true, true, 0, commands.Eval)
-	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, commands.Ping)
-	handler.AddCommand("shutdown", "", true, true, 0, commands.Shutdown)
+	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, aboutcmd)
+	handler.AddCommand("eval", "", true, true, 0, evalcmd)
+	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, pingcmd)
+	handler.AddCommand("shutdown", "", true, true, 0, shutdowncmd)
 
 	client.AddHandler(handler.OnMessage)
 	client.AddHandler(handler.StatusHandler.OnReady)
