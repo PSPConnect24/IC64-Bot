@@ -48,9 +48,9 @@ func main() {
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt, os.Kill)
 	<-sc
+
 	defer session.Close()
 	defer sentry.Close()
-	sentry.CaptureMessage("Shutting down.", nil)
 	log.Fatalln("Caught shutdown signal, shutting down...")
 }
 
