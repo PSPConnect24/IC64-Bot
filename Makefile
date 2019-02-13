@@ -34,4 +34,3 @@ deps:
 	@$(GOGET) -u github.com/bwmarrin/discordgo
 	@$(GOGET) -u github.com/MikeModder/anpan
 	@$(GOGET) -u github.com/apaxa-go/eval
-	@$(GOGET) -u github.com/getsentry/raven-go
