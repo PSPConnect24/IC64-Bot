@@ -23,6 +23,7 @@ func main() {
 	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, aboutcmd)
 	handler.AddCommand("eval", "", true, true, 0, evalcmd)
 	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, pingcmd)
+	handler.AddCommand("tag", "Tags are more or less custom commands.", false, false, 0, tagcmd)
 	handler.AddCommand("shutdown", "", true, true, 0, shutdowncmd)
 
 	session.AddHandler(handler.OnMessage)
