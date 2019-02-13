@@ -1,7 +1,6 @@
 package main
 
 import (
-	"errors"
 	"log"
 	"os"
 	"os/signal"
@@ -9,23 +8,14 @@ import (
 
 	"github.com/MikeModder/anpan"
 	"github.com/bwmarrin/discordgo"
-	"github.com/getsentry/raven-go"
 )
-
-var sentry *raven.Client
 
 func main() {
 	cfg := load()
 
-	sentry, err := raven.New(cfg.DSN)
-	if os.IsExist(err) {
-		log.Fatalf("Couldn't initialize Sentry.")
-	}
-
 	session, err := discordgo.New("Bot " + cfg.Token)
 	if err != nil {
 		log.Fatalf("Session couldn't be initialized: %s", err.Error())
-		sentry.CaptureError(err, nil, nil)
 	}
 
 	handler := anpan.NewCommandHandler(cfg.Prefixes, cfg.Owners, true, true)
@@ -50,21 +40,5 @@ func main() {
 	<-sc
 
 	defer session.Close()
-	defer sentry.Close()
 	log.Fatalln("Caught shutdown signal, shutting down...")
-}
-
-func disconnect(s *discordgo.Session, event *discordgo.Disconnect) {
-	sentry.CaptureError(errors.New("Disconnected from Discord"), nil)
-	log.Printf("Disconnected from Discord.")
-}
-
-func ratelimit(s *discordgo.Session, event *discordgo.RateLimit) {
-	sentry.CaptureError(errors.New("Ratelimited"), nil)
-	log.Printf("Disconnected from Discord.")
-}
-
-func resumed(s *discordgo.Session, event *discordgo.Resumed) {
-	sentry.CaptureMessage("Resumed", nil)
-	log.Printf("Resumed.")
 }

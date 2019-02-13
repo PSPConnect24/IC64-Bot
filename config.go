@@ -10,7 +10,6 @@ type config struct {
 	Token    string   `json:"token"`
 	Prefixes []string `json:"prefixes"`
 	Owners   []string `json:"owners"`
-	DSN      string   `json:"dsn"`
 }
 
 func load() config {

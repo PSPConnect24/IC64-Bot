@@ -23,7 +23,6 @@ func evalcmd(ctx anpan.Context, content []string) {
 		"message": eval.MakeDataRegular(reflect.ValueOf(ctx.Message)),
 		"guild":   eval.MakeDataRegular(reflect.ValueOf(ctx.Guild)),
 		"bot":     eval.MakeDataRegular(reflect.ValueOf(ctx.Session.State)),
-		"sentry":  eval.MakeDataRegular(reflect.ValueOf(sentry)),
 	}
 
 	output, err := exp.EvalToRegular(env)
@@ -37,7 +36,6 @@ func evalcmd(ctx anpan.Context, content []string) {
 
 func shutdowncmd(ctx anpan.Context, _ []string) {
 	ctx.Session.MessageReactionAdd(ctx.Channel.ID, ctx.Message.ID, ":white_check_mark:")
-	sentry.Close()
 	ctx.Session.Close()
 	defer os.Exit(0)
 }
