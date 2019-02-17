@@ -34,4 +34,4 @@ deps:
 	@$(GOGET) -u github.com/bwmarrin/discordgo
 	@$(GOGET) -u github.com/MikeModder/anpan
 	@$(GOGET) -u github.com/apaxa-go/eval
-	@$(GOGET) -u github.com/Apfel/GOtag
+	@$(GOGET) -u github.com/Apfel/gotag

@@ -3,8 +3,8 @@ package main
 import (
 	"strings"
 
-	gotag "github.com/Apfel/GOtag"
-	gotaglib "github.com/Apfel/GOtag/libraries"
+	gotag "github.com/Apfel/gotag"
+	gotaglib "github.com/Apfel/gotag/libraries"
 	"github.com/MikeModder/anpan"
 )
 
