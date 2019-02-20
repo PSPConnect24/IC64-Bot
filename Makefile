@@ -35,3 +35,4 @@ deps:
 	@$(GOGET) -u github.com/MikeModder/anpan
 	@$(GOGET) -u github.com/apaxa-go/eval
 	@$(GOGET) -u github.com/Apfel/gotag
+	@$(GOGET) -u gopkg.in/yaml.v2
