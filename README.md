@@ -1,3 +1,3 @@
-# IronConnect64-Bot
+# PSPConnect24-Bot
 
-Official Discord-Bot for **[IronConnect64](https://discord.gg/6pvnRmm)**
+Official Discord-Bot for **[PSPConnect24](https://discord.gg/6pvnRmm)**
