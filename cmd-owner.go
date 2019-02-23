@@ -9,7 +9,7 @@ import (
 	"github.com/apaxa-go/eval"
 )
 
-func evalcmd(ctx anpan.Context, content []string) {
+func evalcmd(ctx anpan.Context, content []string) error {
 	exp, err := eval.ParseString(strings.Join(content, " "), "")
 	if err != nil {
 		ctx.Reply(":x: An error occurred: **" + err.Error() + "**")
@@ -34,7 +34,7 @@ func evalcmd(ctx anpan.Context, content []string) {
 	ctx.Reply(":white_check_mark: Output:\n```\n" + output.String() + "\n```")
 }
 
-func shutdowncmd(ctx anpan.Context, _ []string) {
+func shutdowncmd(ctx anpan.Context, _ []string) error {
 	ctx.Session.MessageReactionAdd(ctx.Channel.ID, ctx.Message.ID, ":white_check_mark:")
 	ctx.Session.Close()
 	defer os.Exit(0)
