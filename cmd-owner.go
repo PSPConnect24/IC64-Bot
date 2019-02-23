@@ -13,7 +13,7 @@ func evalcmd(ctx anpan.Context, content []string) error {
 	exp, err := eval.ParseString(strings.Join(content, " "), "")
 	if err != nil {
 		ctx.Reply(":x: An error occurred: **" + err.Error() + "**")
-		return
+		return err
 	}
 
 	env := eval.Args{
@@ -26,16 +26,22 @@ func evalcmd(ctx anpan.Context, content []string) error {
 	}
 
 	output, err := exp.EvalToRegular(env)
-	if err != nil {
+	if os.IsExist(err) {
 		ctx.Reply(":x: An error occurred: **" + err.Error() + "**")
-		return
+		return err
 	}
 
-	ctx.Reply(":white_check_mark: Output:\n```\n" + output.String() + "\n```")
+	_, err = ctx.Reply(":white_check_mark: Output:\n```\n" + output.String() + "\n```")
+	if os.IsExist(err) {
+		return err
+	}
+
+	return nil
 }
 
 func shutdowncmd(ctx anpan.Context, _ []string) error {
 	ctx.Session.MessageReactionAdd(ctx.Channel.ID, ctx.Message.ID, ":white_check_mark:")
 	ctx.Session.Close()
 	defer os.Exit(0)
+	return nil
 }
