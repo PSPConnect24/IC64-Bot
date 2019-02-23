@@ -20,11 +20,11 @@ func main() {
 
 	handler := anpan.NewCommandHandler(cfg.Prefixes, cfg.Owners, true, true)
 
-	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, aboutcmd)
-	handler.AddCommand("eval", "", true, true, 0, evalcmd)
-	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, pingcmd)
-	handler.AddCommand("tag", "Tags are more or less custom commands.", false, false, 0, tagcmd)
-	handler.AddCommand("shutdown", "", true, true, 0, shutdowncmd)
+	handler.AddCommand("about", "Gives you information about the bot.", false, false, 0, anpan.CommandTypeEverywhere, aboutcmd)
+	handler.AddCommand("eval", "", true, true, 0, anpan.CommandTypeEverywhere, evalcmd)
+	handler.AddCommand("ping", "Check the bot's ping.", false, false, 0, anpan.CommandTypeEverywhere, pingcmd)
+	handler.AddCommand("tag", "Tags are more or less custom commands.", false, false, 0, anpan.CommandTypeEverywhere, tagcmd)
+	handler.AddCommand("shutdown", "", true, true, 0, anpan.CommandTypeEverywhere, shutdowncmd)
 
 	session.AddHandler(handler.OnMessage)
 	session.AddHandler(handler.StatusHandler.OnReady)
